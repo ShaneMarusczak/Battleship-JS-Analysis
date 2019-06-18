@@ -70,3 +70,13 @@ input {
   font-size: small;
   margin-top: 10px;
 }
+
+#buttons {
+  width: 175px;
+  display: flex;
+  flex-direction: column;
+}
+
+#compfr {
+  margin-bottom: 10px;
+}
