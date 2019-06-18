@@ -239,7 +239,7 @@
       document.getElementById("totalHits").innerText = 17;
       document.getElementById("totalMisses").innerText = shotsFired - 17;
       document.getElementById("hitPercentage").innerText =
-        Math.floor(100 * (17 / shotsFired)) + "%";
+        Math.round(100 * (17 / shotsFired)) + "%";
     }
   }
 
