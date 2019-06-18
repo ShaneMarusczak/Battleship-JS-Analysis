@@ -235,8 +235,7 @@
       destroyerSunk
     ) {
       gameOver = true;
-      document.getElementById("totalShots").innerText =
-        "Total Shots Fired: " + shotsFired;
+      document.getElementById("totalShots").innerText = shotsFired;
     }
   }
 
