@@ -80,3 +80,12 @@ input {
 #compfr {
   margin-bottom: 10px;
 }
+
+#mainArea {
+  display: flex;
+  flex-direction: row;
+}
+
+#data p {
+  margin-top: 15px;
+}

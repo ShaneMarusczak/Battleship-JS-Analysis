@@ -236,6 +236,10 @@
     ) {
       gameOver = true;
       document.getElementById("totalShots").innerText = shotsFired;
+      document.getElementById("totalHits").innerText = 17;
+      document.getElementById("totalMisses").innerText = shotsFired - 17;
+      document.getElementById("hitPercentage").innerText =
+        Math.floor(100 * (17 / shotsFired)) + "%";
     }
   }
 

@@ -6,10 +6,16 @@
   </head>
   <body>
     <h1>Battleship</h1>
-    <p>Total Shots: <span id="totalShots"></span></p>
 
-    <div id="gameboard"></div>
-
+    <div id="mainArea">
+      <div id="gameboard"></div>
+      <div id="data">
+        <p>Total Shots: <span id="totalShots"></span></p>
+        <p>Total Hits: <span id="totalHits"></span></p>
+        <p>Total Misses: <span id="totalMisses"></span></p>
+        <p>Hit Percentage: <span id="hitPercentage"></span></p>
+      </div>
+    </div>
     <div id="buttons">
       <button id="compfr">Start</button>
       <button id="strtOvrBtn">Start Over</button>
