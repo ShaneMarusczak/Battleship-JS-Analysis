@@ -110,6 +110,7 @@
       square.appendChild(num);
       square.id = "s" + j + i;
       num.id = "p" + j + i;
+      num.classList.add("numText");
       var topPosition = j * squareSize;
       var leftPosition = i * squareSize;
       square.style.top = topPosition + "px";
