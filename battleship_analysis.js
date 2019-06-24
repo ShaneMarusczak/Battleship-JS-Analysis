@@ -1,5 +1,7 @@
 "use strict";
 (function() {
+  var whereShotX;
+  var whereShoty;
   const rows = 10;
   const cols = 10;
   const squareSize = 50;
@@ -103,8 +105,11 @@
     for (var j = 0; j < rows; j++) {
       gameBoard[i].push(0);
       var square = document.createElement("div");
+      var num = document.createElement("p");
       gameBoardContainer.appendChild(square);
+      square.appendChild(num);
       square.id = "s" + j + i;
+      num.id = "p" + j + i;
       var topPosition = j * squareSize;
       var leftPosition = i * squareSize;
       square.style.top = topPosition + "px";
@@ -254,6 +259,8 @@
           document.getElementById("s" + (x + 1) + y).classList.add("miss");
           gameBoard[x + 1][y] = 3;
           shotsFired++;
+          whereShotX = x + 1;
+          whereShoty = y;
           return;
         } else if (gameBoard[x + 1][y] == 1) {
           document.getElementById("s" + (x + 1) + y).style.background = "red";
@@ -262,6 +269,8 @@
           shotsFired++;
           shipFound++;
           lastShotX++;
+          whereShotX = x + 1;
+          whereShoty = y;
           return;
         }
       }
@@ -279,6 +288,8 @@
             .classList.add("miss");
           gameBoard[x - tempShipFound][y] = 3;
           shotsFired++;
+          whereShotX = x - tempShipFound;
+          whereShoty = y;
           return;
         } else if (
           x - tempShipFound > -1 &&
@@ -294,6 +305,8 @@
           shotsFired++;
           shipFound++;
           lastShotX--;
+          whereShotX = x - tempShipFound;
+          whereShoty = y;
           return;
         } else {
           scanCounter = 0;
@@ -312,6 +325,8 @@
           document.getElementById("s" + x + (y + 1)).classList.add("miss");
           gameBoard[x][y + 1] = 3;
           shotsFired++;
+          whereShotX = x;
+          whereShoty = y + 1;
           return;
         } else if (gameBoard[x][y + 1] == 1) {
           document.getElementById("s" + x + (y + 1)).style.background = "red";
@@ -320,6 +335,8 @@
           shotsFired++;
           shipFound++;
           lastShotY++;
+          whereShotX = x;
+          whereShoty = y + 1;
           return;
         }
       }
@@ -337,6 +354,8 @@
             .classList.add("miss");
           gameBoard[x][y - tempShipFound] = 3;
           shotsFired++;
+          whereShotX = x;
+          whereShoty = y - tempShipFound;
           return;
         }
         for (var i = 1; i < 5; i++) {
@@ -348,6 +367,8 @@
             gameBoard[x][y - i] = 2;
             shotsFired++;
             shipFound++;
+            whereShotX = x;
+            whereShoty = y - i;
             return;
           }
         }
@@ -369,6 +390,8 @@
           gameBoard[x + 1][y] = 3;
           shotsFired++;
           scanCounter++;
+          whereShotX = x + 1;
+          whereShoty = y;
           return;
         } else if (gameBoard[x + 1][y] == 1) {
           document.getElementById("s" + (x + 1) + y).style.background = "red";
@@ -379,6 +402,8 @@
           shipDirection = "ver";
           scanCounter = 0;
           lastShotX++;
+          whereShotX = x + 1;
+          whereShoty = y;
           return;
         } else {
           scanCounter++;
@@ -396,6 +421,8 @@
           gameBoard[x - 1][y] = 3;
           shotsFired++;
           scanCounter++;
+          whereShotX = x - 1;
+          whereShoty = y;
           return;
         } else if (gameBoard[x - 1][y] == 1) {
           document.getElementById("s" + (x - 1) + y).style.background = "red";
@@ -407,6 +434,8 @@
           scanCounter = 0;
           lastShotX--;
           tempShipFound--;
+          whereShotX = x - 1;
+          whereShoty = y;
           return;
         } else {
           scanCounter++;
@@ -424,6 +453,8 @@
           gameBoard[x][y + 1] = 3;
           shotsFired++;
           scanCounter++;
+          whereShotX = x;
+          whereShoty = y + 1;
           return;
         } else if (gameBoard[x][y + 1] == 1) {
           document.getElementById("s" + x + (y + 1)).style.background = "red";
@@ -434,6 +465,8 @@
           shipDirection = "hor";
           scanCounter = 0;
           lastShotY++;
+          whereShotX = x;
+          whereShoty = y + 1;
           return;
         } else {
           scanCounter++;
@@ -447,6 +480,8 @@
         gameBoard[x][y - 1] = 3;
         shotsFired++;
         scanCounter++;
+        whereShotX = x;
+        whereShoty = y - 1;
         return;
       } else if (gameBoard[x][y - 1] == 1) {
         document.getElementById("s" + x + (y - 1)).style.background = "red";
@@ -458,6 +493,8 @@
         scanCounter = 0;
         lastShotY--;
         tempShipFound--;
+        whereShotX = x;
+        whereShoty = y - 1;
         return;
       }
     }
@@ -485,12 +522,16 @@
       document.getElementById("s" + x + y).classList.add("miss");
       gameBoard[x][y] = 3;
       shotsFired++;
+      whereShotX = x;
+      whereShoty = y;
     } else if (gameBoard[x][y] == 1) {
       document.getElementById("s" + x + y).style.background = "red";
       document.getElementById("s" + x + y).classList.add("hit");
       gameBoard[x][y] = 2;
       shotsFired++;
       shipFound++;
+      whereShotX = x;
+      whereShoty = y;
     } else if (gameBoard[x][y] == 2 || gameBoard[x][y] == 3) {
       searchingShot();
     }
@@ -508,6 +549,8 @@
         document.getElementById("s" + x + (y + 1)).classList.add("miss");
         gameBoard[x][y + 1] = 3;
         shotsFired++;
+        whereShotX = x;
+        whereShoty = y + 1;
         return;
       } else if (gameBoard[x][y + 1] == 1) {
         document.getElementById("s" + x + (y + 1)).style.background = "red";
@@ -517,6 +560,8 @@
         shipFound++;
         scanShipFound++;
         lastShotY++;
+        whereShotX = x;
+        whereShoty = y + 1;
         return;
       }
     }
@@ -530,6 +575,8 @@
           .classList.add("miss");
         gameBoard[x][y - scanShipFound] = 3;
         shotsFired++;
+        whereShotX = x;
+        whereShoty = y - scanShipFound;
         return;
       } else {
         for (var i = 1; i < 5; i++) {
@@ -539,6 +586,8 @@
             gameBoard[x][y - i] = 2;
             shotsFired++;
             shipFound++;
+            whereShotX = x;
+            whereShoty = y - i;
             return;
           }
         }
@@ -560,6 +609,9 @@
       }
     }
     shipSunkChecker();
+    document.getElementById(
+      "p" + whereShotX + whereShoty
+    ).innerText = shotsFired;
     gaveOverChecker();
   };
 
