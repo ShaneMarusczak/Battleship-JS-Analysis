@@ -351,8 +351,6 @@
             .classList.add("miss");
           gameBoard[x][y - tempShipFound] = 3;
           shotsFired++;
-          whereShotX = x;
-          whereShoty = y - tempShipFound;
           document.getElementById(
             "p" + x + (y - tempShipFound)
           ).innerText = shotsFired;
