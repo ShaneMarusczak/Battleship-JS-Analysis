@@ -359,7 +359,7 @@
           whereShoty = y - tempShipFound;
           return;
         }
-        for (var i = 1; i < 5; i++) {
+        for (var i = 1; i < 10; i++) {
           if (y - i < 0) {
             break;
           } else if (gameBoard[x][y - i] == 1) {
@@ -580,7 +580,7 @@
         whereShoty = y - scanShipFound;
         return;
       } else {
-        for (var i = 1; i < 5; i++) {
+        for (var i = 1; i < 10; i++) {
           if (gameBoard[x][y - i] == 1) {
             document.getElementById("s" + x + (y - i)).style.background = "red";
             document.getElementById("s" + x + (y - i)).classList.add("hit");
