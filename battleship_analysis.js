@@ -1,7 +1,5 @@
 "use strict";
 (function() {
-  var whereShotX;
-  var whereShoty;
   const rows = 10;
   const cols = 10;
   const squareSize = 50;
@@ -260,8 +258,7 @@
           document.getElementById("s" + (x + 1) + y).classList.add("miss");
           gameBoard[x + 1][y] = 3;
           shotsFired++;
-          whereShotX = x + 1;
-          whereShoty = y;
+          document.getElementById("p" + (x + 1) + y).innerText = shotsFired;
           return;
         } else if (gameBoard[x + 1][y] == 1) {
           document.getElementById("s" + (x + 1) + y).style.background = "red";
@@ -270,8 +267,7 @@
           shotsFired++;
           shipFound++;
           lastShotX++;
-          whereShotX = x + 1;
-          whereShoty = y;
+          document.getElementById("p" + (x + 1) + y).innerText = shotsFired;
           return;
         }
       }
@@ -289,8 +285,9 @@
             .classList.add("miss");
           gameBoard[x - tempShipFound][y] = 3;
           shotsFired++;
-          whereShotX = x - tempShipFound;
-          whereShoty = y;
+          document.getElementById(
+            "p" + (x - tempShipFound) + y
+          ).innerText = shotsFired;
           return;
         } else if (
           x - tempShipFound > -1 &&
@@ -306,8 +303,9 @@
           shotsFired++;
           shipFound++;
           lastShotX--;
-          whereShotX = x - tempShipFound;
-          whereShoty = y;
+          document.getElementById(
+            "p" + (x - tempShipFound) + y
+          ).innerText = shotsFired;
           return;
         } else {
           scanCounter = 0;
@@ -326,8 +324,7 @@
           document.getElementById("s" + x + (y + 1)).classList.add("miss");
           gameBoard[x][y + 1] = 3;
           shotsFired++;
-          whereShotX = x;
-          whereShoty = y + 1;
+          document.getElementById("p" + x + (y + 1)).innerText = shotsFired;
           return;
         } else if (gameBoard[x][y + 1] == 1) {
           document.getElementById("s" + x + (y + 1)).style.background = "red";
@@ -336,8 +333,7 @@
           shotsFired++;
           shipFound++;
           lastShotY++;
-          whereShotX = x;
-          whereShoty = y + 1;
+          document.getElementById("p" + x + (y + 1)).innerText = shotsFired;
           return;
         }
       }
@@ -357,6 +353,9 @@
           shotsFired++;
           whereShotX = x;
           whereShoty = y - tempShipFound;
+          document.getElementById(
+            "p" + x + (y - tempShipFound)
+          ).innerText = shotsFired;
           return;
         }
         for (var i = 1; i < 10; i++) {
@@ -368,8 +367,7 @@
             gameBoard[x][y - i] = 2;
             shotsFired++;
             shipFound++;
-            whereShotX = x;
-            whereShoty = y - i;
+            document.getElementById("p" + x + (y - i)).innerText = shotsFired;
             return;
           }
         }
@@ -391,8 +389,7 @@
           gameBoard[x + 1][y] = 3;
           shotsFired++;
           scanCounter++;
-          whereShotX = x + 1;
-          whereShoty = y;
+          document.getElementById("p" + (x + 1) + y).innerText = shotsFired;
           return;
         } else if (gameBoard[x + 1][y] == 1) {
           document.getElementById("s" + (x + 1) + y).style.background = "red";
@@ -403,8 +400,7 @@
           shipDirection = "ver";
           scanCounter = 0;
           lastShotX++;
-          whereShotX = x + 1;
-          whereShoty = y;
+          document.getElementById("p" + (x + 1) + y).innerText = shotsFired;
           return;
         } else {
           scanCounter++;
@@ -422,8 +418,7 @@
           gameBoard[x - 1][y] = 3;
           shotsFired++;
           scanCounter++;
-          whereShotX = x - 1;
-          whereShoty = y;
+          document.getElementById("p" + (x - 1) + y).innerText = shotsFired;
           return;
         } else if (gameBoard[x - 1][y] == 1) {
           document.getElementById("s" + (x - 1) + y).style.background = "red";
@@ -435,8 +430,7 @@
           scanCounter = 0;
           lastShotX--;
           tempShipFound--;
-          whereShotX = x - 1;
-          whereShoty = y;
+          document.getElementById("p" + (x - 1) + y).innerText = shotsFired;
           return;
         } else {
           scanCounter++;
@@ -454,8 +448,7 @@
           gameBoard[x][y + 1] = 3;
           shotsFired++;
           scanCounter++;
-          whereShotX = x;
-          whereShoty = y + 1;
+          document.getElementById("p" + x + (y + 1)).innerText = shotsFired;
           return;
         } else if (gameBoard[x][y + 1] == 1) {
           document.getElementById("s" + x + (y + 1)).style.background = "red";
@@ -466,8 +459,7 @@
           shipDirection = "hor";
           scanCounter = 0;
           lastShotY++;
-          whereShotX = x;
-          whereShoty = y + 1;
+          document.getElementById("p" + x + (y + 1)).innerText = shotsFired;
           return;
         } else {
           scanCounter++;
@@ -481,8 +473,7 @@
         gameBoard[x][y - 1] = 3;
         shotsFired++;
         scanCounter++;
-        whereShotX = x;
-        whereShoty = y - 1;
+        document.getElementById("p" + x + (y - 1)).innerText = shotsFired;
         return;
       } else if (gameBoard[x][y - 1] == 1) {
         document.getElementById("s" + x + (y - 1)).style.background = "red";
@@ -494,8 +485,7 @@
         scanCounter = 0;
         lastShotY--;
         tempShipFound--;
-        whereShotX = x;
-        whereShoty = y - 1;
+        document.getElementById("p" + x + (y - 1)).innerText = shotsFired;
         return;
       }
     }
@@ -523,16 +513,14 @@
       document.getElementById("s" + x + y).classList.add("miss");
       gameBoard[x][y] = 3;
       shotsFired++;
-      whereShotX = x;
-      whereShoty = y;
+      document.getElementById("p" + x + y).innerText = shotsFired;
     } else if (gameBoard[x][y] == 1) {
       document.getElementById("s" + x + y).style.background = "red";
       document.getElementById("s" + x + y).classList.add("hit");
       gameBoard[x][y] = 2;
       shotsFired++;
       shipFound++;
-      whereShotX = x;
-      whereShoty = y;
+      document.getElementById("p" + x + y).innerText = shotsFired;
     } else if (gameBoard[x][y] == 2 || gameBoard[x][y] == 3) {
       searchingShot();
     }
@@ -550,8 +538,7 @@
         document.getElementById("s" + x + (y + 1)).classList.add("miss");
         gameBoard[x][y + 1] = 3;
         shotsFired++;
-        whereShotX = x;
-        whereShoty = y + 1;
+        document.getElementById("p" + x + (y + 1)).innerText = shotsFired;
         return;
       } else if (gameBoard[x][y + 1] == 1) {
         document.getElementById("s" + x + (y + 1)).style.background = "red";
@@ -561,8 +548,7 @@
         shipFound++;
         scanShipFound++;
         lastShotY++;
-        whereShotX = x;
-        whereShoty = y + 1;
+        document.getElementById("p" + x + (y + 1)).innerText = shotsFired;
         return;
       }
     }
@@ -576,8 +562,9 @@
           .classList.add("miss");
         gameBoard[x][y - scanShipFound] = 3;
         shotsFired++;
-        whereShotX = x;
-        whereShoty = y - scanShipFound;
+        document.getElementById(
+          "p" + x + (y - scanShipFound)
+        ).innerText = shotsFired;
         return;
       } else {
         for (var i = 1; i < 10; i++) {
@@ -587,8 +574,7 @@
             gameBoard[x][y - i] = 2;
             shotsFired++;
             shipFound++;
-            whereShotX = x;
-            whereShoty = y - i;
+            document.getElementById("p" + x + (y - i)).innerText = shotsFired;
             return;
           }
         }
@@ -610,9 +596,6 @@
       }
     }
     shipSunkChecker();
-    document.getElementById(
-      "p" + whereShotX + whereShoty
-    ).innerText = shotsFired;
     gaveOverChecker();
   };
 
