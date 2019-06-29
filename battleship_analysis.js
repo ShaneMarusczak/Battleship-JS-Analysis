@@ -137,7 +137,6 @@
   var cruiserSunk = false;
   var submarineSunk = false;
   var destroyerSunk = false;
-  var hittingShipFound = false;
   var shotsFired = 0;
   var lastShotX;
   var lastShotY;
@@ -543,8 +542,6 @@
         if (document.getElementById("s" + i + j).style.background == "red") {
           lastShotX = i;
           lastShotY = j;
-          hittingShipFound = true;
-          scanShipFound = 1;
           return;
         }
       }
