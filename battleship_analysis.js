@@ -152,7 +152,6 @@
     shipDirection = "";
     firstTimeIn = true;
     tempShipFound = 0;
-    hittingShipFound = false;
     shipHitButNotSunkReassign();
   };
 
