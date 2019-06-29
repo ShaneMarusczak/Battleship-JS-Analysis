@@ -524,74 +524,14 @@
     }
   };
 
-  var scanShipFound = 1;
-
-  var scanShipFoundAttack = function() {
-    var x = lastShotX;
-    var y = lastShotY;
-
-    if (!(y + 1 > 9)) {
-      if (gameBoard[x][y + 1] == 0) {
-        document.getElementById("s" + x + (y + 1)).style.background = "#4d88ff";
-        document.getElementById("s" + x + (y + 1)).classList.add("miss");
-        gameBoard[x][y + 1] = 3;
-        shotsFired++;
-        document.getElementById("p" + x + (y + 1)).innerText = shotsFired;
-        return;
-      } else if (gameBoard[x][y + 1] == 1) {
-        document.getElementById("s" + x + (y + 1)).style.background = "red";
-        document.getElementById("s" + x + (y + 1)).classList.add("hit");
-        gameBoard[x][y + 1] = 2;
-        shotsFired++;
-        shipFound++;
-        scanShipFound++;
-        lastShotY++;
-        document.getElementById("p" + x + (y + 1)).innerText = shotsFired;
-        return;
-      }
-    }
-    if (y + 1 > 9 || gameBoard[x][y + 1] == 2 || gameBoard[x][y + 1] == 3) {
-      if (gameBoard[x][y - scanShipFound] == 0) {
-        document.getElementById(
-          "s" + x + (y - scanShipFound)
-        ).style.background = "#4d88ff";
-        document
-          .getElementById("s" + x + (y - scanShipFound))
-          .classList.add("miss");
-        gameBoard[x][y - scanShipFound] = 3;
-        shotsFired++;
-        document.getElementById(
-          "p" + x + (y - scanShipFound)
-        ).innerText = shotsFired;
-        return;
-      } else {
-        for (var i = 1; i < 10; i++) {
-          if (gameBoard[x][y - i] == 1) {
-            document.getElementById("s" + x + (y - i)).style.background = "red";
-            document.getElementById("s" + x + (y - i)).classList.add("hit");
-            gameBoard[x][y - i] = 2;
-            shotsFired++;
-            shipFound++;
-            document.getElementById("p" + x + (y - i)).innerText = shotsFired;
-            return;
-          }
-        }
-      }
-    }
-  };
-
   var compMove = function() {
     if (gameOver) {
       return;
     }
-    if (hittingShipFound) {
-      scanShipFoundAttack();
+    if (shipFound > 0) {
+      shipFoundAttack();
     } else {
-      if (shipFound > 0) {
-        shipFoundAttack();
-      } else {
-        searchingShot();
-      }
+      searchingShot();
     }
     shipSunkChecker();
     gaveOverChecker();
