@@ -494,41 +494,6 @@
 		}
 	};
 
-	// let searchingShot = function () {
-	// 	let x;
-	// 	let y;
-	// 	do {
-	// 		if (shotsFired < 6) {
-	// 			x = randomIntFromInterval(3, 7);
-	// 			y = randomIntFromInterval(3, 7);
-	// 		} else if (shotsFired < 12) {
-	// 			x = randomIntFromInterval(2, 8);
-	// 			y = randomIntFromInterval(2, 8);
-	// 		} else {
-	// 			x = randomIntFromInterval(0, 9);
-	// 			y = randomIntFromInterval(0, 9);
-	// 		}
-	// 	} while ((x % 2 != 0 && y % 2 == 0) || (x % 2 == 0 && y % 2 != 0));
-	// 	lastShotX = x;
-	// 	lastShotY = y;
-	// 	if (gameBoard[x][y] == 0) {
-	// 		document.getElementById("s" + x + y).style.background = "#4d88ff";
-	// 		document.getElementById("s" + x + y).classList.add("miss");
-	// 		gameBoard[x][y] = 3;
-	// 		shotsFired++;
-	// 		document.getElementById("p" + x + y).innerText = shotsFired;
-	// 	} else if (gameBoard[x][y] == 1) {
-	// 		document.getElementById("s" + x + y).style.background = "red";
-	// 		document.getElementById("s" + x + y).classList.add("hit");
-	// 		gameBoard[x][y] = 2;
-	// 		shotsFired++;
-	// 		shipFound++;
-	// 		document.getElementById("p" + x + y).innerText = shotsFired;
-	// 	} else if (gameBoard[x][y] == 2 || gameBoard[x][y] == 3) {
-	// 		searchingShot();
-	// 	}
-	// };
-
 	const searchingShot = function () {
 		let x;
 		let y;
