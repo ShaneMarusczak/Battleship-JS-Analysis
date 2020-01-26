@@ -5,6 +5,8 @@ body {
 	width: 70%;
 	background-color: cornsilk;
 	font-family: "Orbitron", sans-serif;
+	display: flex;
+	flex-direction: column;
 }
 
 p {
@@ -23,6 +25,12 @@ input {
 	font-size: 1.5em;
 	line-height: 1.4em;
 	color: #333;
+}
+
+@media screen and (max-width: 1050px) {
+	#mainArea {
+		display: table;
+	}
 }
 
 #gameboard,
@@ -75,19 +83,24 @@ input {
 	width: 175px;
 	display: flex;
 	flex-direction: column;
+	padding-top: 30px;
 }
 
 #compfr {
 	margin-bottom: 10px;
 }
 
-#mainArea {
+#lowerSection {
 	display: flex;
 	flex-direction: row;
 }
 
 #data p {
-	margin-top: 15px;
+	margin-bottom: 12px;
+}
+
+#data {
+	margin-left: 90px;
 }
 
 .numText {
@@ -100,3 +113,13 @@ button:hover {
 	cursor: pointer;
 	background-color: #ddd;
 }
+
+a {
+	margin-top: 15px;
+	width: 155px;
+}
+
+a:hover {
+	color:cadetblue;
+}
+
