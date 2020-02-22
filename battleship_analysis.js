@@ -1,7 +1,3 @@
-/*eslint-disable prefer-destructuring */
-/* eslint-disable spaced-comment */
-/* eslint-disable no-tabs */
-/* eslint-disable multiline-comment-style */
 "use strict";
 (function () {
 	const rows = 10;
@@ -507,8 +503,7 @@
 			} while ((x % 2 != 0 && y % 2 == 0) || (x % 2 == 0 && y % 2 != 0));
 		} else {
 			const location = probabilityCalculator();
-			x = location[0];
-			y = location[1];
+			[x, y] = location;
 			resetProbabilityChart();
 		}
 		lastShotX = x;
