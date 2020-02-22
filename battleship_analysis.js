@@ -538,45 +538,49 @@
 	};
 
 	const probabilityCalculator = function () {
-		let longestLength;
+		const lengthsLeft = [];
 		let counter = 0;
 		if (!carrierSunk) {
-			longestLength = 5;
+			lengthsLeft.push(5);
 		} else if (!battleshipSunk) {
-			longestLength = 4;
-		} else if (!submarineSunk || !cruiserSunk) {
-			longestLength = 3;
-		} else {
-			longestLength = 2;
+			lengthsLeft.push(4);
+		} else if (!submarineSunk) {
+			lengthsLeft.push(3);
+		} else if (!cruiserSunk) {
+			lengthsLeft.push(3);
+		} else if (!destroyerSunk) {
+			lengthsLeft.push(2);
 		}
-		for (let i = 0; i < rows; i++) {
-			for (let j = 0; j < rows - longestLength + 1; j++) {
-				for (let k = 0; k < longestLength; k++) {
-					if (gameBoard[i][j + k] !== 2 && gameBoard[i][j + k] !== 3 && gameBoard[i][j + k] !== 4) {
-						counter++;
+		for (let n = 0; n < lengthsLeft.length; n++) {
+			for (let i = 0; i < rows; i++) {
+				for (let j = 0; j < rows - lengthsLeft[n] + 1; j++) {
+					for (let k = 0; k < lengthsLeft[n]; k++) {
+						if (gameBoard[i][j + k][0] !== 2 && gameBoard[i][j + k][0] !== 3 && gameBoard[i][j + k][0] !== 4) {
+							counter++;
+						}
 					}
-				}
-				if (counter === longestLength) {
-					for (let k = 0; k < longestLength; k++) {
-						probabilityChart[i][j + k]++;
+					if (counter === lengthsLeft[n]) {
+						for (let k = 0; k < lengthsLeft[n]; k++) {
+							probabilityChart[i][j + k]++;
+						}
 					}
+					counter = 0;
 				}
-				counter = 0;
 			}
-		}
-		for (let i = 0; i < cols; i++) {
-			for (let j = 0; j < cols - longestLength + 1; j++) {
-				for (let k = 0; k < longestLength; k++) {
-					if (gameBoard[j + k][i] !== 2 && gameBoard[j + k][i] !== 3 && gameBoard[j + k][i] !== 4) {
-						counter++;
+			for (let i = 0; i < cols; i++) {
+				for (let j = 0; j < cols - lengthsLeft[n] + 1; j++) {
+					for (let k = 0; k < lengthsLeft[n]; k++) {
+						if (gameBoard[j + k][i][0] !== 2 && gameBoard[j + k][i][0] !== 3 && gameBoard[j + k][i][0] !== 4) {
+							counter++;
+						}
 					}
-				}
-				if (counter === longestLength) {
-					for (let k = 0; k < longestLength; k++) {
-						probabilityChart[j + k][i]++;
+					if (counter === lengthsLeft[n]) {
+						for (let k = 0; k < lengthsLeft[n]; k++) {
+							probabilityChart[j + k][i]++;
+						}
 					}
+					counter = 0;
 				}
-				counter = 0;
 			}
 		}
 		let currentMax = 0;
