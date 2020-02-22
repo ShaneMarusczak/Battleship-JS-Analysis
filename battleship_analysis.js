@@ -17,10 +17,8 @@
 		location.reload();
 	});
 
-	function randomIntFromInterval(min, max) {
-		//inclusive
-		return Math.floor(Math.random() * (max - min + 1) + min);
-	}
+	//inclusive
+	const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 
 	let nameIndex = 0;
 	const names = ["Carrier", "Battleship", "Cruiser", "Submarine", "Destroyer"];
