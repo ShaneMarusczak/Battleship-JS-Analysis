@@ -535,20 +535,24 @@
 		let counter = 0;
 		if (!carrierSunk) {
 			lengthsLeft.push(5);
-		} else if (!battleshipSunk) {
+		}
+		if (!battleshipSunk) {
 			lengthsLeft.push(4);
-		} else if (!submarineSunk) {
+		}
+		if (!submarineSunk) {
 			lengthsLeft.push(3);
-		} else if (!cruiserSunk) {
+		}
+		if (!cruiserSunk) {
 			lengthsLeft.push(3);
-		} else if (!destroyerSunk) {
+		}
+		if (!destroyerSunk) {
 			lengthsLeft.push(2);
 		}
 		for (let n = 0; n < lengthsLeft.length; n++) {
 			for (let i = 0; i < rows; i++) {
 				for (let j = 0; j < rows - lengthsLeft[n] + 1; j++) {
 					for (let k = 0; k < lengthsLeft[n]; k++) {
-						if (gameBoard[i][j + k][0] !== 2 && gameBoard[i][j + k][0] !== 3 && gameBoard[i][j + k][0] !== 4) {
+						if (gameBoard[i][j + k] !== 2 && gameBoard[i][j + k] !== 3 && gameBoard[i][j + k] !== 4) {
 							counter++;
 						}
 					}
@@ -563,7 +567,7 @@
 			for (let i = 0; i < cols; i++) {
 				for (let j = 0; j < cols - lengthsLeft[n] + 1; j++) {
 					for (let k = 0; k < lengthsLeft[n]; k++) {
-						if (gameBoard[j + k][i][0] !== 2 && gameBoard[j + k][i][0] !== 3 && gameBoard[j + k][i][0] !== 4) {
+						if (gameBoard[j + k][i] !== 2 && gameBoard[j + k][i] !== 3 && gameBoard[j + k][i] !== 4) {
 							counter++;
 						}
 					}
