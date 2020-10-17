@@ -148,12 +148,25 @@
   let tempShipFound = 0;
   let gameOver = false;
 
+  const capitalizeFirst = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
   const shipSunkHelper = function (i, sunkShipName) {
     sunkColorChange(sunkShipName);
     shipFound = shipFound - i;
     shipDirection = "";
     firstTimeIn = true;
     tempShipFound = 0;
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        if (
+          document
+            .getElementById("s" + i + j)
+            .classList.contains(capitalizeFirst(sunkShipName))
+        ) {
+          gameBoard[i][j] = 4;
+        }
+      }
+    }
     shipHitButNotSunkReassign();
   };
 
@@ -271,7 +284,12 @@
           return;
         }
       }
-      if (x + 1 > 9 || gameBoard[x + 1][y] == 2 || gameBoard[x + 1][y] == 3) {
+      if (
+        x + 1 > 9 ||
+        gameBoard[x + 1][y] == 2 ||
+        gameBoard[x + 1][y] == 3 ||
+        gameBoard[x + 1][y] == 4
+      ) {
         if (firstTimeIn) {
           tempShipFound = shipFound + tempShipFound;
           firstTimeIn = false;
@@ -337,7 +355,12 @@
           return;
         }
       }
-      if (y + 1 > 9 || gameBoard[x][y + 1] == 2 || gameBoard[x][y + 1] == 3) {
+      if (
+        y + 1 > 9 ||
+        gameBoard[x][y + 1] == 2 ||
+        gameBoard[x][y + 1] == 3 ||
+        gameBoard[x][y + 1] == 4
+      ) {
         if (firstTimeIn) {
           tempShipFound = shipFound + tempShipFound;
           firstTimeIn = false;
@@ -629,7 +652,7 @@
   const shipHitButNotSunkReassign = function () {
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
-        if (document.getElementById("s" + i + j).style.background == "red") {
+        if (gameBoard[i][j] == 2) {
           lastShotX = i;
           lastShotY = j;
           return;
