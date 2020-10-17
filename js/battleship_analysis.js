@@ -5,13 +5,8 @@
   const squareSize = 50;
   const gameBoard = [];
   const gameBoardContainer = document.getElementById("gameboard");
-  const strtOvrBtn = document.getElementById("strtOvrBtn");
   const ships = [];
   const probabilityChart = [];
-
-  strtOvrBtn.addEventListener("click", function () {
-    location.reload();
-  });
 
   //inclusive
   const randomIntFromInterval = (min, max) =>
