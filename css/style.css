@@ -1,10 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Orbitron&display=swap");
-
 body {
   margin: 45px auto;
   width: 70%;
-  background-color: cornsilk;
-  font-family: "Orbitron", sans-serif;
+  background-color: #b0c4de;
+  font-family: "Roboto Mono", monospace;
   display: flex;
   flex-direction: column;
 }
@@ -33,7 +31,7 @@ h1 {
 
 #githubicon:hover {
   transform: translateY(-5px);
-  background-color: azure;
+  background-color: linen;
 }
 
 #homeIcon {
@@ -98,12 +96,12 @@ input {
 
 #strtOvrBtn,
 #compfr {
-  font-family: "Orbitron", sans-serif;
+  font-family: "Roboto Mono", monospace;
 }
 
 #btns {
   margin-right: 75px;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Roboto Mono", monospace;
 }
 
 #updateText {
