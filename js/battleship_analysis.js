@@ -5,7 +5,6 @@
   const squareSize = 50;
   const gameBoard = [];
   const gameBoardContainer = document.getElementById("gameboard");
-  const ships = [];
   const probabilityChart = [];
 
   //inclusive
@@ -22,14 +21,14 @@
     const row = randomIntFromInterval(0, 9);
     const col = randomIntFromInterval(0, 9);
     let shipPlaceCounter = 0;
-    if (dir == 1) {
+    if (dir === 1) {
       if (col >= len - 1) {
         for (let i = 0; i < len; i++) {
-          if (gameBoard[row][col - i] == 0) {
+          if (gameBoard[row][col - i] === 0) {
             shipPlaceCounter++;
           }
         }
-        if (shipPlaceCounter == len) {
+        if (shipPlaceCounter === len) {
           for (let i = 0; i < len; i++) {
             gameBoard[row][col - i] = 1;
             document.getElementById("s" + row + (col - i)).classList.add(name);
@@ -40,11 +39,11 @@
         }
       } else {
         for (let i = 0; i < len; i++) {
-          if (gameBoard[row][col + i] == 0) {
+          if (gameBoard[row][col + i] === 0) {
             shipPlaceCounter++;
           }
         }
-        if (shipPlaceCounter == len) {
+        if (shipPlaceCounter === len) {
           for (let i = 0; i < len; i++) {
             gameBoard[row][col + i] = 1;
             document.getElementById("s" + row + (col + i)).classList.add(name);
@@ -57,11 +56,11 @@
     } else {
       if (row >= len - 1) {
         for (let i = 0; i < len; i++) {
-          if (gameBoard[row - i][col] == 0) {
+          if (gameBoard[row - i][col] === 0) {
             shipPlaceCounter++;
           }
         }
-        if (shipPlaceCounter == len) {
+        if (shipPlaceCounter === len) {
           for (let i = 0; i < len; i++) {
             gameBoard[row - i][col] = 1;
             document.getElementById("s" + (row - i) + col).classList.add(name);
@@ -72,11 +71,11 @@
         }
       } else {
         for (let i = 0; i < len; i++) {
-          if (gameBoard[row + i][col] == 0) {
+          if (gameBoard[row + i][col] === 0) {
             shipPlaceCounter++;
           }
         }
-        if (shipPlaceCounter == len) {
+        if (shipPlaceCounter === len) {
           for (let i = 0; i < len; i++) {
             gameBoard[row + i][col] = 1;
             document.getElementById("s" + (row + i) + col).classList.add(name);
@@ -87,8 +86,7 @@
         }
       }
     }
-    if (ship.length != 0) {
-      ships.push(ship);
+    if (ship.length !== 0) {
       nameIndex++;
     }
   }
@@ -122,7 +120,7 @@
     for (let j = 0; j < rows; j++) {
       probabilityChart[i].push(0);
       document.getElementById("s" + i + j).style.background = "#80aaff";
-      if (gameBoard[i][j] == 1) {
+      if (gameBoard[i][j] === 1) {
         document.getElementById("s" + i + j).style.background = "white";
       }
     }
@@ -216,23 +214,23 @@
         }
       }
     }
-    if (carrierCounter == 5) {
+    if (carrierCounter === 5) {
       carrierSunk = true;
       shipSunkHelper(5, "Carrier");
     }
-    if (battleshipCounter == 4) {
+    if (battleshipCounter === 4) {
       battleshipSunk = true;
       shipSunkHelper(4, "Battleship");
     }
-    if (cruiserCounter == 3) {
+    if (cruiserCounter === 3) {
       cruiserSunk = true;
       shipSunkHelper(3, "Cruiser");
     }
-    if (submarineCounter == 3) {
+    if (submarineCounter === 3) {
       submarineSunk = true;
       shipSunkHelper(3, "Submarine");
     }
-    if (destroyerCounter == 2) {
+    if (destroyerCounter === 2) {
       destroyerSunk = true;
       shipSunkHelper(2, "Destroyer");
     }
@@ -258,9 +256,9 @@
   const shipFoundAttack = function () {
     const x = lastShotX;
     const y = lastShotY;
-    if (shipDirection == "ver") {
+    if (shipDirection === "ver") {
       if (!(x + 1 > 9)) {
-        if (gameBoard[x + 1][y] == 0) {
+        if (gameBoard[x + 1][y] === 0) {
           document.getElementById("s" + (x + 1) + y).style.background =
             "#4d88ff";
           document.getElementById("s" + (x + 1) + y).classList.add("miss");
@@ -268,7 +266,7 @@
           shotsFired++;
           document.getElementById("p" + (x + 1) + y).innerText = shotsFired;
           return;
-        } else if (gameBoard[x + 1][y] == 1) {
+        } else if (gameBoard[x + 1][y] === 1) {
           document.getElementById("s" + (x + 1) + y).style.background = "red";
           document.getElementById("s" + (x + 1) + y).classList.add("hit");
           gameBoard[x + 1][y] = 2;
@@ -281,15 +279,15 @@
       }
       if (
         x + 1 > 9 ||
-        gameBoard[x + 1][y] == 2 ||
-        gameBoard[x + 1][y] == 3 ||
-        gameBoard[x + 1][y] == 4
+        gameBoard[x + 1][y] === 2 ||
+        gameBoard[x + 1][y] === 3 ||
+        gameBoard[x + 1][y] === 4
       ) {
         if (firstTimeIn) {
           tempShipFound = shipFound + tempShipFound;
           firstTimeIn = false;
         }
-        if (x - tempShipFound > -1 && gameBoard[x - tempShipFound][y] == 0) {
+        if (x - tempShipFound > -1 && gameBoard[x - tempShipFound][y] === 0) {
           document.getElementById(
             "s" + (x - tempShipFound) + y
           ).style.background = "#4d88ff";
@@ -304,7 +302,7 @@
           return;
         } else if (
           x - tempShipFound > -1 &&
-          gameBoard[x - tempShipFound][y] == 1
+          gameBoard[x - tempShipFound][y] === 1
         ) {
           document.getElementById(
             "s" + (x - tempShipFound) + y
@@ -329,9 +327,9 @@
         }
       }
     }
-    if (shipDirection == "hor") {
+    if (shipDirection === "hor") {
       if (!(y + 1 > 9)) {
-        if (gameBoard[x][y + 1] == 0) {
+        if (gameBoard[x][y + 1] === 0) {
           document.getElementById("s" + x + (y + 1)).style.background =
             "#4d88ff";
           document.getElementById("s" + x + (y + 1)).classList.add("miss");
@@ -339,7 +337,7 @@
           shotsFired++;
           document.getElementById("p" + x + (y + 1)).innerText = shotsFired;
           return;
-        } else if (gameBoard[x][y + 1] == 1) {
+        } else if (gameBoard[x][y + 1] === 1) {
           document.getElementById("s" + x + (y + 1)).style.background = "red";
           document.getElementById("s" + x + (y + 1)).classList.add("hit");
           gameBoard[x][y + 1] = 2;
@@ -352,15 +350,15 @@
       }
       if (
         y + 1 > 9 ||
-        gameBoard[x][y + 1] == 2 ||
-        gameBoard[x][y + 1] == 3 ||
-        gameBoard[x][y + 1] == 4
+        gameBoard[x][y + 1] === 2 ||
+        gameBoard[x][y + 1] === 3 ||
+        gameBoard[x][y + 1] === 4
       ) {
         if (firstTimeIn) {
           tempShipFound = shipFound + tempShipFound;
           firstTimeIn = false;
         }
-        if (gameBoard[x][y - tempShipFound] == 0) {
+        if (gameBoard[x][y - tempShipFound] === 0) {
           document.getElementById(
             "s" + x + (y - tempShipFound)
           ).style.background = "#4d88ff";
@@ -377,7 +375,7 @@
         for (let i = 1; i < 10; i++) {
           if (y - i < 0) {
             break;
-          } else if (gameBoard[x][y - i] == 1) {
+          } else if (gameBoard[x][y - i] === 1) {
             document.getElementById("s" + x + (y - i)).style.background = "red";
             document.getElementById("s" + x + (y - i)).classList.add("hit");
             gameBoard[x][y - i] = 2;
@@ -394,11 +392,11 @@
         tempShipFound--;
       }
     }
-    if (scanCounter == 0 && shipDirection == "") {
+    if (scanCounter === 0 && shipDirection === "") {
       if (x + 1 > 9) {
         scanCounter++;
       } else {
-        if (gameBoard[x + 1][y] == 0) {
+        if (gameBoard[x + 1][y] === 0) {
           document.getElementById("s" + (x + 1) + y).style.background =
             "#4d88ff";
           document.getElementById("s" + (x + 1) + y).classList.add("miss");
@@ -407,7 +405,7 @@
           scanCounter++;
           document.getElementById("p" + (x + 1) + y).innerText = shotsFired;
           return;
-        } else if (gameBoard[x + 1][y] == 1) {
+        } else if (gameBoard[x + 1][y] === 1) {
           document.getElementById("s" + (x + 1) + y).style.background = "red";
           document.getElementById("s" + (x + 1) + y).classList.add("hit");
           gameBoard[x + 1][y] = 2;
@@ -423,11 +421,11 @@
         }
       }
     }
-    if (scanCounter == 1 && shipDirection == "") {
+    if (scanCounter === 1 && shipDirection === "") {
       if (x - 1 < 0) {
         scanCounter++;
       } else {
-        if (gameBoard[x - 1][y] == 0) {
+        if (gameBoard[x - 1][y] === 0) {
           document.getElementById("s" + (x - 1) + y).style.background =
             "#4d88ff";
           document.getElementById("s" + (x - 1) + y).classList.add("miss");
@@ -436,7 +434,7 @@
           scanCounter++;
           document.getElementById("p" + (x - 1) + y).innerText = shotsFired;
           return;
-        } else if (gameBoard[x - 1][y] == 1) {
+        } else if (gameBoard[x - 1][y] === 1) {
           document.getElementById("s" + (x - 1) + y).style.background = "red";
           document.getElementById("s" + (x - 1) + y).classList.add("hit");
           gameBoard[x - 1][y] = 2;
@@ -453,11 +451,11 @@
         }
       }
     }
-    if (scanCounter == 2 && shipDirection == "") {
+    if (scanCounter === 2 && shipDirection === "") {
       if (y + 1 > 9) {
         scanCounter++;
       } else {
-        if (gameBoard[x][y + 1] == 0) {
+        if (gameBoard[x][y + 1] === 0) {
           document.getElementById("s" + x + (y + 1)).style.background =
             "#4d88ff";
           document.getElementById("s" + x + (y + 1)).classList.add("miss");
@@ -466,7 +464,7 @@
           scanCounter++;
           document.getElementById("p" + x + (y + 1)).innerText = shotsFired;
           return;
-        } else if (gameBoard[x][y + 1] == 1) {
+        } else if (gameBoard[x][y + 1] === 1) {
           document.getElementById("s" + x + (y + 1)).style.background = "red";
           document.getElementById("s" + x + (y + 1)).classList.add("hit");
           gameBoard[x][y + 1] = 2;
@@ -482,16 +480,15 @@
         }
       }
     }
-    if (scanCounter == 3 && shipDirection == "") {
-      if (gameBoard[x][y - 1] == 0) {
+    if (scanCounter === 3 && shipDirection === "") {
+      if (gameBoard[x][y - 1] === 0) {
         document.getElementById("s" + x + (y - 1)).style.background = "#4d88ff";
         document.getElementById("s" + x + (y - 1)).classList.add("miss");
         gameBoard[x][y - 1] = 3;
         shotsFired++;
         scanCounter++;
         document.getElementById("p" + x + (y - 1)).innerText = shotsFired;
-        return;
-      } else if (gameBoard[x][y - 1] == 1) {
+      } else if (gameBoard[x][y - 1] === 1) {
         document.getElementById("s" + x + (y - 1)).style.background = "red";
         document.getElementById("s" + x + (y - 1)).classList.add("hit");
         gameBoard[x][y - 1] = 2;
@@ -502,7 +499,6 @@
         lastShotY--;
         tempShipFound--;
         document.getElementById("p" + x + (y - 1)).innerText = shotsFired;
-        return;
       }
     }
   };
@@ -519,21 +515,20 @@
           x = randomIntFromInterval(1, 8);
           y = randomIntFromInterval(1, 8);
         }
-      } while ((x % 2 != 0 && y % 2 == 0) || (x % 2 == 0 && y % 2 != 0));
+      } while ((x % 2 !== 0 && y % 2 === 0) || (x % 2 === 0 && y % 2 !== 0));
     } else {
-      const location = probabilityCalculator();
-      [x, y] = location;
+      [x, y] = probabilityCalculator();
       resetProbabilityChart();
     }
     lastShotX = x;
     lastShotY = y;
-    if (gameBoard[x][y] == 0) {
+    if (gameBoard[x][y] === 0) {
       document.getElementById("s" + x + y).style.background = "#4d88ff";
       document.getElementById("s" + x + y).classList.add("miss");
       gameBoard[x][y] = 3;
       shotsFired++;
       document.getElementById("p" + x + y).innerText = shotsFired;
-    } else if (gameBoard[x][y] == 1) {
+    } else if (gameBoard[x][y] === 1) {
       document.getElementById("s" + x + y).style.background = "red";
       document.getElementById("s" + x + y).classList.add("hit");
       gameBoard[x][y] = 2;
@@ -541,9 +536,9 @@
       shipFound++;
       document.getElementById("p" + x + y).innerText = shotsFired;
     } else if (
-      gameBoard[x][y] == 2 ||
-      gameBoard[x][y] == 3 ||
-      gameBoard[x][y] == 4
+      gameBoard[x][y] === 2 ||
+      gameBoard[x][y] === 3 ||
+      gameBoard[x][y] === 4
     ) {
       searchingShot();
     }
@@ -647,7 +642,7 @@
   const shipHitButNotSunkReassign = function () {
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
-        if (gameBoard[i][j] == 2) {
+        if (gameBoard[i][j] === 2) {
           lastShotX = i;
           lastShotY = j;
           return;
